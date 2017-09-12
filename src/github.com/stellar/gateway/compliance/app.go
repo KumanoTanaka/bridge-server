@@ -1,6 +1,7 @@
 package compliance
 
 import (
+	"crypto/tls"
 	"fmt"
 	"net/http"
 	"os"
@@ -73,6 +74,11 @@ func NewApp(config config.Config, migrateFlag bool, versionFlag bool, version st
 
 	httpClientWithTimeout := http.Client{
 		Timeout: 10 * time.Second,
+	}
+	if config.Debug.TLSClientInsecureSkipVerify {
+		httpClientWithTimeout.Transport = &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		}
 	}
 
 	stellartomlClient := stellartoml.Client{

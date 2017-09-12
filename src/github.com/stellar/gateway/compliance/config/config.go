@@ -28,6 +28,9 @@ type Config struct {
 		Username string `mapstructure:"username"`
 		Password string `mapstructure:"password"`
 	} `mapstructure:"tx_status_auth"`
+	Debug struct {
+		TLSClientInsecureSkipVerify bool `mapstructure:"tls_client_insecure_skip_verify"`
+	}
 }
 
 // Keys contains values of `keys` config group
