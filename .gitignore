@@ -5,3 +5,8 @@
 /bin
 /dist
 /config.toml
+
+# eclipse ide
+.project
+.settings/
+
